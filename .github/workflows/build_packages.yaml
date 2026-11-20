@@ -11,9 +11,9 @@ jobs:
     name: Build Linux Package
     runs-on: ubuntu-26.04
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Setup Node.js Environment
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v7
         with:
           node-version-file: ".nvmrc"
       - name: Install Dependencies
@@ -24,14 +24,14 @@ jobs:
         run: yarn electron:build-linux
       - name: Configure AWS Credentials
         if: github.event_name == 'release'
-        uses: aws-actions/configure-aws-credentials@v2
+        uses: aws-actions/configure-aws-credentials@v6
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ secrets.AWS_DEFAULT_REGION }}
       - name: Upload Linux Artifacts to GitHub Release
         if: github.event_name == 'release'
-        uses: softprops/action-gh-release@v1
+        uses: softprops/action-gh-release@v3
         with:
           files: dist_electron/*
           token: ${{ secrets.GITHUB_TOKEN }}
@@ -49,9 +49,9 @@ jobs:
       NODE_OPTIONS: --openssl-legacy-provider
     runs-on: windows-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Setup Node.js Environment
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v7
         with:
           node-version-file: ".nvmrc"
       - name: Install Dependencies
@@ -62,14 +62,14 @@ jobs:
         run: yarn electron:build-win
       - name: Configure AWS Credentials
         if: github.event_name == 'release'
-        uses: aws-actions/configure-aws-credentials@v2
+        uses: aws-actions/configure-aws-credentials@v6
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ secrets.AWS_DEFAULT_REGION }}
       - name: Upload Windows Artifacts to GitHub Release
         if: github.event_name == 'release'
-        uses: softprops/action-gh-release@v1
+        uses: softprops/action-gh-release@v3
         with:
           files: dist_electron/*
           token: ${{ secrets.GITHUB_TOKEN }}
@@ -110,7 +110,7 @@ jobs:
         run: gh release upload "$TAG" SHA256SUMS --clobber
       - name: Configure AWS Credentials
         if: ${{ !github.event.release.prerelease }}
-        uses: aws-actions/configure-aws-credentials@v4
+        uses: aws-actions/configure-aws-credentials@v6
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
@@ -125,9 +125,9 @@ jobs:
     name: Build macOS Package (Test Only)
     runs-on: macos-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Setup Node.js Environment
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v7
         with:
           node-version-file: ".nvmrc"
       - name: Install Dependencies

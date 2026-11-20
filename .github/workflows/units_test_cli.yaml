@@ -12,8 +12,8 @@ jobs:
   cli_test:
     runs-on: ubuntu-26.04
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v3
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
         with:
           node-version-file: 'cli/.nvmrc'
 
@@ -25,6 +25,6 @@ jobs:
           yarn test:coverage
 
       # - name: Upload coverage reports to Codecov
-      #   uses: codecov/codecov-action@v3
+      #   uses: codecov/codecov-action@v7
       #   env:
       #     CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}

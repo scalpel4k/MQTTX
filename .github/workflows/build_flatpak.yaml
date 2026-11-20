@@ -28,9 +28,9 @@ jobs:
     permissions:
       contents: write
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Setup Node.js Environment
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v7
         with:
           node-version-file: '.nvmrc'
       - name: Install Dependencies
@@ -46,7 +46,7 @@ jobs:
           sudo apt-get install -y flatpak flatpak-builder
           flatpak remote-add --user --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
       - name: Cache flatpak-builder State
-        uses: actions/cache@v4
+        uses: actions/cache@v6
         with:
           path: .flatpak-builder
           key: flatpak-builder-${{ matrix.arch }}-${{ hashFiles('flatpak/com.emqx.MQTTX.yml') }}
@@ -61,13 +61,13 @@ jobs:
             --runtime-repo=https://dl.flathub.org/repo/flathub.flatpakrepo
           echo "BUNDLE=$bundle" >> "$GITHUB_ENV"
       - name: Upload Workflow Artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: flatpak-${{ matrix.arch }}
           path: ${{ env.BUNDLE }}
       - name: Upload Flatpak to GitHub Release
         if: github.event_name == 'release'
-        uses: softprops/action-gh-release@v2
+        uses: softprops/action-gh-release@v3
         with:
           files: ${{ env.BUNDLE }}
           token: ${{ secrets.GITHUB_TOKEN }}

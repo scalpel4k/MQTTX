@@ -13,9 +13,9 @@ jobs:
   deploy_website:
     runs-on: ubuntu-26.04
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: use node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v7
         with:
           node-version-file: 'web/.nvmrc'
 
@@ -46,9 +46,9 @@ jobs:
     if: github.event_name == 'release' && !github.event.release.prerelease
     runs-on: ubuntu-26.04
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: use node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v7
         with:
           node-version-file: 'web/.nvmrc'
 
@@ -59,7 +59,7 @@ jobs:
 
       - name: docker meta
         id: meta
-        uses: docker/metadata-action@v4
+        uses: docker/metadata-action@v6
         with:
           images: emqx/mqttx-web
           flavor: |
@@ -68,19 +68,19 @@ jobs:
             type=ref,event=tag
 
       - name: set up qemu
-        uses: docker/setup-qemu-action@v2
+        uses: docker/setup-qemu-action@v4
 
       - name: set up docker buildx
-        uses: docker/setup-buildx-action@v2
+        uses: docker/setup-buildx-action@v4
 
       - name: login to docker hub
-        uses: docker/login-action@v2
+        uses: docker/login-action@v4
         with:
           username: ${{ secrets.DOCKER_HUB_USER }}
           password: ${{ secrets.DOCKER_HUB_TOKEN }}
 
       - name: build and push
-        uses: docker/build-push-action@v3
+        uses: docker/build-push-action@v7
         with:
           context: ./web
           push: true
