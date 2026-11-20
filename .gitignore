@@ -33,3 +33,8 @@ CLAUDE.md
 .cursorrules
 .todos
 .cursor/
+# Flatpak build output
+/build-dir
+/repo
+/.flatpak-builder
+*.flatpak

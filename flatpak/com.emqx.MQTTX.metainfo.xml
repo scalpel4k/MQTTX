@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>com.emqx.MQTTX</id>
+  <name>MQTTX</name>
+  <summary>MQTT 5.0 desktop client</summary>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>Apache-2.0</project_license>
+  <developer id="com.emqx">
+    <name>EMQ Technologies</name>
+  </developer>
+  <description>
+    <p>
+      MQTTX is a cross-platform MQTT 5.0 client. Connect to several brokers at once,
+      subscribe to topics, and publish and inspect messages.
+    </p>
+  </description>
+  <launchable type="desktop-id">com.emqx.MQTTX.desktop</launchable>
+  <url type="homepage">https://mqttx.app</url>
+  <url type="bugtracker">https://github.com/emqx/MQTTX/issues</url>
+  <url type="vcs-browser">https://github.com/emqx/MQTTX</url>
+  <screenshots>
+    <screenshot type="default">
+      <image>https://raw.githubusercontent.com/emqx/MQTTX/main/assets/mqttx-preview.png</image>
+    </screenshot>
+  </screenshots>
+  <content_rating type="oars-1.1"/>
+</component>

@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Name=MQTTX
+Comment=MQTT 5.0 desktop client
+Exec=mqttx %U
+Icon=com.emqx.MQTTX
+Terminal=false
+Categories=Development;Network;
+Keywords=MQTT;IoT;broker;
+StartupWMClass=MQTTX

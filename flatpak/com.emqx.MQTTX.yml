@@ -1,0 +1,42 @@
+id: com.emqx.MQTTX
+runtime: org.freedesktop.Platform
+runtime-version: "26.08"
+sdk: org.freedesktop.Sdk
+base: org.electronjs.Electron2.BaseApp
+base-version: "26.08"
+command: mqttx
+separate-locales: false
+finish-args:
+  - --share=ipc
+  - --share=network
+  - --socket=wayland
+  - --socket=fallback-x11
+  - --device=dri
+  # Certificate and script paths are stored in connections and read again later.
+  - --filesystem=home
+  # Keyring access for stored passwords and API keys.
+  - --talk-name=org.freedesktop.secrets
+  - --talk-name=org.kde.kwalletd6
+  - --talk-name=org.freedesktop.Notifications
+modules:
+  - name: mqttx
+    buildsystem: simple
+    sources:
+      # electron-builder `--linux dir` output, see README.md.
+      - type: dir
+        path: ../dist_electron/flatpak-unpacked
+        dest: app
+      - type: file
+        path: mqttx.sh
+      - type: file
+        path: com.emqx.MQTTX.desktop
+      - type: file
+        path: com.emqx.MQTTX.metainfo.xml
+      - type: file
+        path: ../public/icons/512x512.png
+    build-commands:
+      - cp -a app /app/mqttx
+      - install -Dm755 mqttx.sh /app/bin/mqttx
+      - install -Dm644 com.emqx.MQTTX.desktop -t /app/share/applications
+      - install -Dm644 com.emqx.MQTTX.metainfo.xml -t /app/share/metainfo
+      - install -Dm644 512x512.png /app/share/icons/hicolor/512x512/apps/com.emqx.MQTTX.png
