@@ -11,7 +11,7 @@ on:
 
 jobs:
   deploy_website:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-26.04
     steps:
       - uses: actions/checkout@v4
       - name: use node.js
@@ -44,7 +44,7 @@ jobs:
 
   publish_docker:
     if: github.event_name == 'release' && !github.event.release.prerelease
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-26.04
     steps:
       - uses: actions/checkout@v4
       - name: use node.js

@@ -85,7 +85,7 @@ jobs:
     name: Publish SHA256SUMS
     if: github.event_name == 'release'
     needs: [build-linux, build-win]
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-26.04
     permissions:
       contents: write
     env:
